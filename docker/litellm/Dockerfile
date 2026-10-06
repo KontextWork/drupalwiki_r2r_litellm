@@ -1,4 +1,6 @@
-ARG FROM_IMAGE=ghcr.io/berriai/litellm:v1.103.3
+#ARG FROM_IMAGE=ghcr.io/berriai/litellm:v1.103.3
+ARG FROM_IMAGE=ghcr.io/berriai/litellm:v1.83.14-stable.patch.3
+
 FROM $FROM_IMAGE
 
 # needed since this is how we stop/start those images during devop (profile selection does not work as expected)
