@@ -23,4 +23,4 @@ COPY bin/litellm-entrypoint.sh /usr/local/bin/litellm-entrypoint.sh
 RUN chmod +x /usr/local/bin/litellm-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/litellm-entrypoint.sh"]
-CMD ["--port", "4000", "--config", "/mnt/ragconfig/litellm/config.yaml", "--detailed_debug"]
+CMD ["--port", "4000", "--config", "/mnt/ragconfig/litellm/config.yaml"]

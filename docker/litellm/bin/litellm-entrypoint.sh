@@ -65,8 +65,9 @@ EOF
 
 wait_until "token file"     check_file "$TOKEN_FILE"
 wait_until "config file"    check_file "$CONFIG"
+# Important to wait for the master-key since changing it would make db entries invalid, since they are salted using
+# the master key (this is not only an authentication?
 wait_until "master_key"     check_master_key
 
 log "all checks passed, starting litellm"
-exec litellm "$@"
 exec litellm "$@"
