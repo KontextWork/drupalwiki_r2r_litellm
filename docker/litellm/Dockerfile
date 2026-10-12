@@ -19,7 +19,7 @@ LABEL traefik.http.routers.litellm-health.tls.certresolver="letsencrypt"
 # this is where we put our generated configuration too
 ENV CONFIG_FILE_PATH=/mnt/ragconfig/litellm/config.yaml
 
-COPY litellm-entrypoint.sh /usr/local/bin/litellm-entrypoint.sh
+COPY bin/litellm-entrypoint.sh /usr/local/bin/litellm-entrypoint.sh
 RUN chmod +x /usr/local/bin/litellm-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/litellm-entrypoint.sh"]
