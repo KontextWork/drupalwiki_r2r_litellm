@@ -19,5 +19,8 @@ LABEL traefik.http.routers.litellm-health.tls.certresolver="letsencrypt"
 # this is where we put our generated configuration too
 ENV CONFIG_FILE_PATH=/mnt/ragconfig/litellm/config.yaml
 
-ENTRYPOINT ["/bin/sh", "-c", "for f in /mnt/ragconfig/r2r/openai_api_token.txt /mnt/ragconfig/litellm/config.yaml; do until [ -f \"$f\" ]; do echo \"waiting for $f\" >> /mnt/log/rag/litellm.log; sleep 5; done; done; exec litellm \"$@\" >> /mnt/log/rag/litellm.log 2>&1", "--"]
+COPY litellm-entrypoint.sh /usr/local/bin/litellm-entrypoint.sh
+RUN chmod +x /usr/local/bin/litellm-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/litellm-entrypoint.sh"]
 CMD ["--port", "4000", "--config", "/mnt/ragconfig/litellm/config.yaml", "--detailed_debug"]
